@@ -9,6 +9,7 @@ import org.lineageos.generatebp.models.Module
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.lineageos.generatebp)
@@ -25,10 +26,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        kapt {
-            arguments {
-                arg("room.schemaLocation", "$projectDir/schemas")
-            }
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
 
@@ -82,7 +81,8 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
-    kapt(libs.androidx.room.compiler)
+//    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.viewpager2)
     implementation(libs.coil)
@@ -109,6 +109,7 @@ configure<GenerateBpPluginExtension> {
                 // We provide our own androidx.media3
                 !module.group.startsWith("androidx.media3")
             }
+
             module.group.startsWith("org.jetbrains") -> true
             module.group == "com.google.android.material" -> true
             module.group == "com.google.auto.value" -> true
