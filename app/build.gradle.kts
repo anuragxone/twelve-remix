@@ -103,7 +103,8 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.logback.classic)
+//    implementation(libs.logback.classic)
+    implementation(libs.slf4j.android)
 }
 
 configure<GenerateBpPluginExtension> {
