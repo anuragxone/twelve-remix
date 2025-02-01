@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.lineageos.generatebp)
 }
 
@@ -105,6 +106,11 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
 //    implementation(libs.logback.classic)
     implementation(libs.slf4j.android)
+
+    //compose
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.material3)
+    implementation(platform(libs.androidx.compose.bom))
 }
 
 configure<GenerateBpPluginExtension> {

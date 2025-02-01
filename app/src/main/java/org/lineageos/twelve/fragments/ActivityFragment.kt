@@ -6,9 +6,16 @@
 package org.lineageos.twelve.fragments
 
 import android.os.Bundle
+import android.text.TextPaint
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -49,6 +56,17 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
     private val linearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.linearProgressIndicator)
     private val noElementsLinearLayout by getViewProperty<LinearLayout>(R.id.noElementsLinearLayout)
     private val recyclerView by getViewProperty<RecyclerView>(R.id.recyclerView)
+    private val composeView by getViewProperty<ComposeView>(R.id.compose_view)
+
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        val view = inflater.inflate(R.layout.fragment_activity, container, false)
+//
+//        return view
+//    }
 
     // RecyclerView
     private val adapter by lazy {
@@ -109,6 +127,16 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        composeView.apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                MaterialTheme {
+                    Text("Compose here")
+                }
+            }
+
+        }
 
         recyclerView.adapter = adapter
 
