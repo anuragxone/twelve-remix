@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.androidx.preference)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.work.runtime.ktx)
     annotationProcessor(libs.androidx.room.compiler)
 //    kapt(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
@@ -107,6 +108,8 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
 //    implementation(libs.logback.classic)
     implementation(libs.slf4j.android)
+    implementation(libs.androidx.javascriptengine)
+
 
     //compose
     implementation(libs.androidx.activity.compose)

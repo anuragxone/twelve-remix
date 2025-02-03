@@ -6,6 +6,7 @@
 package org.lineageos.twelve.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,7 +31,7 @@ class ActivityViewModel(application: Application) : TwelveViewModel(application)
             RequestStatus.Loading(),
         )
 
-    private val _uiState = MutableStateFlow(ActivityComposeState("","","", ""))
+    private val _uiState = MutableStateFlow(ActivityComposeState("","","", "","" ,""))
     val uiState: StateFlow<ActivityComposeState> = _uiState.asStateFlow()
 
     private val innertubeClient = InnertubeClient(KtorClient)
@@ -61,15 +62,27 @@ class ActivityViewModel(application: Application) : TwelveViewModel(application)
                     baseJs = baseJs
                 )
             }
+            Log.d("basejs", _uiState.value.baseJs)
         }
     }
 
-    fun getSigSc(): String {
-        return player.extractSigSourceCode(_uiState.value.baseJs)
+     fun getSigSc() {
+        _uiState.update { state ->
+            state.copy(
+                sigSc = player.extractSigSourceCode(_uiState.value.baseJs)
+            )
+        }
+         Log.d("sig_sc", _uiState.value.sigSc)
     }
 
-    fun getNsigSc(): String {
-        return player.getNsigSource(_uiState.value.baseJs)
+     fun getNsigSc() {
+        _uiState.update {
+            state ->
+            state.copy(
+                nsigSc = player.getNsigSource(_uiState.value.baseJs)
+            )
+        }
+         Log.d("nsig_sc", _uiState.value.nsigSc)
     }
 
 
@@ -79,5 +92,7 @@ data class ActivityComposeState(
     var textFieldValue: String,
     var videoId: String,
     var baseJs: String,
-    var videoInfo: String
+    var videoInfo: String,
+    var sigSc: String,
+    var nsigSc: String
 )

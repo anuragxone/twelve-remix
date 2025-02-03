@@ -30,14 +30,35 @@ class Player(private val innertubeClient: InnertubeClient) {
 
     fun getNsigSource(baseJs: String): String {
         val regexOpts = setOf(RegexOption.DOT_MATCHES_ALL, RegexOption.MULTILINE)
+        var variable = ""
         val regex =
             "[a-zA-z0-9]+=function\\(\\S\\)\\{var \\S=\\S\\.split.*-_w8_\\\"\\+[a-zA-Z]\\}return \\S\\.join\\(\\\"\\\"\\)\\};"
         val nsig = Regex(regex, regexOpts)
         val result = nsig.find(baseJs)
         if (result != null) {
-            return result.groupValues[0]
+            val variableRegex = "typeof (.*)===\\\"undefined\\\""
+            val varMatch = Regex(variableRegex, regexOpts)
+            val variable = varMatch.find(result.groupValues[0])
+            var variableGrpValue =""
+            if (variable != null ) {
+                variableGrpValue = variable.groupValues[1]
+                if(variableGrpValue.contains('$')){
+                    variableGrpValue = variableGrpValue.replace("$", "\\\$")
+                    Log.d("variable group match", variableGrpValue)
+                }
+
+            }
+            val variableValueRegexPattern = "var $variableGrpValue=[[-][0-9]]+;"
+            val variableValueRegex = Regex(pattern = variableValueRegexPattern)
+            val variableMatch = variableValueRegex.find(baseJs)
+            if (variableMatch != null) {
+
+                Log.d("variableMatch", variableMatch.groupValues[0])
+
+                return variableMatch.groupValues[0] + result.groupValues[0]
+            }
         }
-        return ""
+        return "hello"
     }
 
     private fun getStringBetweenStrings(

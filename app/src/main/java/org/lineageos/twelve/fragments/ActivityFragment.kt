@@ -20,6 +20,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -179,6 +180,21 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
                             })
                         )
                         Text(activityComposeState.videoId)
+                        Button(
+                            onClick = { viewModel.getBaseJs() }
+                        ) {
+                            Text("basejs")
+                        }
+                        Button(
+                            onClick = { viewModel.getSigSc() }
+                        ) {
+                            Text("get sig")
+                        }
+                        Button(
+                            onClick = { viewModel.getNsigSc() }
+                        ) {
+                            Text("get nsig")
+                        }
                     }
                 }
             }
