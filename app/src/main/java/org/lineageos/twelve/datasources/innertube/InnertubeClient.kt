@@ -13,8 +13,8 @@ import org.lineageos.twelve.utils.ktorclient.KtorClient
 
 class InnertubeClient(private val ktorclient: KtorClient) {
 
-    suspend fun getInfo(videoId: String) {
-        ktorclient.client.post {
+    suspend fun getInfo(videoId: String): String {
+       val response =  ktorclient.client.post {
 
             val bodyJson = """
         {
@@ -208,6 +208,8 @@ class InnertubeClient(private val ktorclient: KtorClient) {
             }
             setBody(bodyJson)
         }
+        return response.bodyAsText()
+
     }
 
     suspend fun getBaseJs(): String {

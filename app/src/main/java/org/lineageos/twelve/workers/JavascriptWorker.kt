@@ -17,10 +17,10 @@ class JavascriptWorker(context: Context, parameters: WorkerParameters) :
             .await()
         val jsIsolate = jsSandbox.createIsolate()
 
-        val inputData: String? = inputData.getString("nsig_sc")
+        val inputData: String? = inputData.getString("sc")
         val resultFuture = jsIsolate.evaluateJavaScriptAsync(inputData ?: "")
 
-        val outputData = workDataOf("nsig_sc_output" to resultFuture.await())
+        val outputData = workDataOf("sc_output" to resultFuture.await())
         return Result.success(outputData)
     }
 

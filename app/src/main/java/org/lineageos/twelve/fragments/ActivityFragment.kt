@@ -158,6 +158,7 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
                             value = activityComposeState.textFieldValue,
                             onValueChange = {
                                 viewModel.setTextFieldText(it)
+                                viewModel.setVideoId(it)
                             },
                             modifier = Modifier
                                 .padding(12.dp)
@@ -176,7 +177,8 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
                             maxLines = 1,
                             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                             keyboardActions = KeyboardActions(onDone = {
-                                viewModel.setVideoId(activityComposeState.textFieldValue)
+
+                                viewModel.descrambleUrl(activityComposeState.videoId)
                             })
                         )
                         Text(activityComposeState.videoId)
