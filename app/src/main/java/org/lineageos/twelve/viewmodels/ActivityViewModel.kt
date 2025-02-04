@@ -35,6 +35,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import org.lineageos.twelve.datasources.innertube.InnertubeClient
 import org.lineageos.twelve.ext.applicationContext
+import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.repositories.innertube.Player
 import org.lineageos.twelve.utils.ktorclient.KtorClient
@@ -146,11 +147,16 @@ class ActivityViewModel(application: Application) : TwelveViewModel(application)
                 )
 
             }
-            buildFinalAudioUrl(_uiState.value.audioUrl, _uiState.value.decipheredSig, _uiState.value.decipheredNsig)
+            buildFinalAudioUrl(
+                _uiState.value.audioUrl,
+                _uiState.value.decipheredSig,
+                _uiState.value.decipheredNsig
+            )
             Log.d("final url", _uiState.value.audioUrl)
+            val audio = buildAudio(_uiState.value.audioUrl)
+            val listOfAudio = listOf(audio)
+            playAudio(listOfAudio, 0)
         }
-
-
     }
 
     private fun buildWorkmanagerJsSigSource(param: String): String {
@@ -191,7 +197,7 @@ class ActivityViewModel(application: Application) : TwelveViewModel(application)
         }
     }
 
-    fun buildFinalAudioUrl(audioUrl: String, sig: String, nSig: String){
+    fun buildFinalAudioUrl(audioUrl: String, sig: String, nSig: String) {
         val pot = innertubeClient.pot
         val baseUri = Uri.parse(audioUrl)
 //        val newUri = baseUri.buildUpon()
@@ -212,11 +218,31 @@ class ActivityViewModel(application: Application) : TwelveViewModel(application)
         builder.appendQueryParameter("pot", pot)
 
         val finalUrl = builder.build().toString()
-        _uiState.update {
-            state ->
-            state.copy(audioUrl=finalUrl)
+        _uiState.update { state ->
+            state.copy(audioUrl = finalUrl)
         }
 
+    }
+
+    fun buildAudio(url: String): Audio {
+        val uri = Uri.parse(url)
+        val playbackUri = Uri.parse(url)
+        return Audio(
+            uri, uri,
+            "webm",
+            "audio",
+            Audio.Type.MUSIC,
+            5000000,
+            uri,
+            null,
+            uri,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        )
     }
 
 
