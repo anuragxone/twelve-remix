@@ -146,7 +146,8 @@ class ActivityViewModel(application: Application) : TwelveViewModel(application)
                 )
 
             }
-            Log.d("audioUrl", _uiState.value.audioUrl)
+            buildFinalAudioUrl(_uiState.value.audioUrl, _uiState.value.decipheredSig, _uiState.value.decipheredNsig)
+            Log.d("final url", _uiState.value.audioUrl)
         }
 
 
@@ -187,6 +188,33 @@ class ActivityViewModel(application: Application) : TwelveViewModel(application)
                 decipheredSig = sigOutputData ?: "",
                 decipheredNsig = nSigOutputData ?: ""
             )
+        }
+    }
+
+    fun buildFinalAudioUrl(audioUrl: String, sig: String, nSig: String){
+        val pot = innertubeClient.pot
+        val baseUri = Uri.parse(audioUrl)
+//        val newUri = baseUri.buildUpon()
+//            .appendQueryParameter("sig", sig)
+//            .appendQueryParameter("n", nSig)
+//            .appendQueryParameter("pot", pot)
+//            .build()
+        val builder = baseUri.buildUpon().clearQuery()
+        for (key in baseUri.queryParameterNames) {
+            if (key != "n") {
+                for (value in baseUri.getQueryParameters(key)) {
+                    builder.appendQueryParameter(key, value)
+                }
+            }
+        }
+        builder.appendQueryParameter("n", nSig)
+        builder.appendQueryParameter("sig", sig)
+        builder.appendQueryParameter("pot", pot)
+
+        val finalUrl = builder.build().toString()
+        _uiState.update {
+            state ->
+            state.copy(audioUrl=finalUrl)
         }
 
     }

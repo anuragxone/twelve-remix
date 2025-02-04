@@ -12,157 +12,104 @@ import io.ktor.http.path
 import org.lineageos.twelve.utils.ktorclient.KtorClient
 
 class InnertubeClient(private val ktorclient: KtorClient) {
+    val pot = "MnTqwowGzQcg7Or6qcSESAUMOV7rA3T2RfuYaeBa58OZMTJQG9BHUujQJXip1woHFciwSPfHx5E7tl5NnOUF0wPBKfd23ZpMwnhpwW8pLLDu5iUKyUkIoWXrgOxkQ_ZW6osHB348CaqH3Bc8obOtofcwiLLsZw=="
 
     suspend fun getInfo(videoId: String): String {
        val response =  ktorclient.client.post {
 
             val bodyJson = """
-        {
-    "videoId": "$videoId",
-    "context": {
-        "client": {
-            "hl": "en",
-            "gl": "IN",
-            "remoteHost": "",
-            "deviceMake": "",
-            "deviceModel": "",
-            "visitorData": "Cgt2akxrRE1wcTllNCiJg6u8BjIKCgJJThIEGgAgQg%3D%3D",
-            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36,gzip(gfe)",
-            "clientName": "WEB_REMIX",
-            "clientVersion": "1.20250113.00.00",
-            "osName": "Windows",
-            "osVersion": "10.0",
-            "originalUrl": "https://music.youtube.com/",
-            "platform": "DESKTOP",
-            "clientFormFactor": "UNKNOWN_FORM_FACTOR",
-            "configInfo": {
-                "appInstallData": "CImDq7wGEMHCzhwQiqGxBRDAt84cEJnS_xIQg4WvBRDJ968FEMK3zhwQppOxBRDerbEFEN-0zhwQg8OxBRC9mbAFEMjYsQUQjNCxBRCFp7EFEIaszhwQmY2xBRDQjbAFEOvo_hIQr8LOHBCIsM4cEIfDsQUQiOOvBRDBq84cEJmYsQUQiIewBRDRlM4cEMHNsQUQlP6wBRDqws4cEOW5sQUQ3cjOHBC9irAFEO25sQUQ-KuxBRDnms4cEMO7zhwQksuxBRC36v4SEMbYsQUQt6TOHBCBw7EFEIvUsQUQ_LLOHBCEvc4cEMrUsQUQt--vBRCio84cEIHWsQUQjtCxBRC7ss4cEParsAUQ5s-xBRC-ws4cEKLUsQUQ0-GvBRCazrEFENmqzhwQ4riwBRCPw7EFEJS7zhwQ07nOHBCd0LAFEL22rgUQyeawBRDK2LEFEI7XsQUQrsHOHBDM364FEMTYsQUQq57OHBD6uM4cEJK4zhwQjdSxBRDqw68FEN68zhwQs8DOHBDYvs4cKiBDQU1TRWhVSm9MMndETkhrQnVIZGhRcWpfd1FkQnc9PQ%3D%3D",
-                "coldConfigData": "CImDq7wGGjJBT2pGb3gxUFZOV0ttYno3MVI2Nk10Vkw2R1B1MzZEMjBtQXd2TE10QlBKdW4yLWN4ZyIyQU9qRm94MVBWTldLbWJ6NzFSNjZNdFZMNkdQdTM2RDIwbUF3dkxNdEJQSnVuMi1jeGc%3D",
-                "coldHashData": "CImDq7wGEhM4MzcyMjg4Nzg1MDY2MDg0NzkyGImDq7wGMjJBT2pGb3gxUFZOV0ttYno3MVI2Nk10Vkw2R1B1MzZEMjBtQXd2TE10QlBKdW4yLWN4ZzoyQU9qRm94MVBWTldLbWJ6NzFSNjZNdFZMNkdQdTM2RDIwbUF3dkxNdEJQSnVuMi1jeGc%3D",
-                "hotHashData": "CImDq7wGEhQxNzM2OTIzMjY3NTA1ODYxMDMzMBiJg6u8BjIyQU9qRm94MVBWTldLbWJ6NzFSNjZNdFZMNkdQdTM2RDIwbUF3dkxNdEJQSnVuMi1jeGc6MkFPakZveDFQVk5XS21iejcxUjY2TXRWTDZHUHUzNkQyMG1Bd3ZMTXRCUEp1bjItY3hn"
-            },
-            "browserName": "Chrome",
-            "browserVersion": "132.0.0.0",
-            "acceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "deviceExperimentId": "ChxOelEyTURrNE9EVXlPREkyTWpNMU9UQXlNdz09EImDq7wGGImDq7wG",
-            "rolloutToken": "CKOInNWyv8q9GhDcxvX8z_2KAxjcxvX8z_2KAw%3D%3D",
-            "screenWidthPoints": 1045,
-            "screenHeightPoints": 765,
-            "screenPixelDensity": 1,
-            "screenDensityFloat": 1,
-            "utcOffsetMinutes": 330,
-            "userInterfaceTheme": "USER_INTERFACE_THEME_DARK",
-            "connectionType": "CONN_CELLULAR_4G",
-            "timeZone": "Asia/Calcutta",
-            "playerType": "UNIPLAYER",
-            "tvAppInfo": {
-                "livingRoomAppMode": "LIVING_ROOM_APP_MODE_UNSPECIFIED"
-            },
-            "clientScreen": "WATCH_FULL_SCREEN"
-        },
-        "user": {
-            "lockedSafetyMode": false
-        },
-        "request": {
-            "useSsl": true,
-            "internalExperimentFlags": [],
-            "consistencyTokenJars": []
-        },
-        "clientScreenNonce": "ch3N85NfI06dEmR4",
-        "adSignalsInfo": {
-            "params": [
                 {
-                    "key": "dt",
-                    "value": "1737146761329"
-                },
-                {
-                    "key": "flash",
-                    "value": "0"
-                },
-                {
-                    "key": "frm",
-                    "value": "0"
-                },
-                {
-                    "key": "u_tz",
-                    "value": "330"
-                },
-                {
-                    "key": "u_his",
-                    "value": "4"
-                },
-                {
-                    "key": "u_h",
-                    "value": "900"
-                },
-                {
-                    "key": "u_w",
-                    "value": "1600"
-                },
-                {
-                    "key": "u_ah",
-                    "value": "852"
-                },
-                {
-                    "key": "u_aw",
-                    "value": "1600"
-                },
-                {
-                    "key": "u_cd",
-                    "value": "24"
-                },
-                {
-                    "key": "bc",
-                    "value": "31"
-                },
-                {
-                    "key": "bih",
-                    "value": "765"
-                },
-                {
-                    "key": "biw",
-                    "value": "1028"
-                },
-                {
-                    "key": "brdim",
-                    "value": "0,0,0,0,1600,0,1600,852,1045,765"
-                },
-                {
-                    "key": "vis",
-                    "value": "1"
-                },
-                {
-                    "key": "wgl",
-                    "value": "true"
-                },
-                {
-                    "key": "ca_type",
-                    "value": "image"
+                  "videoId": "$videoId",
+                  "context": {
+                    "client": {
+                      "hl": "en",
+                      "gl": "IN",
+                      "remoteHost": "103.177.174.27",
+                      "deviceMake": "",
+                      "deviceModel": "",
+                      "visitorData": "CgtmWWFldUV5NDZ4USjMv4i9BjIKCgJJThIEGgAgVg%3D%3D",
+                      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36,gzip(gfe)",
+                      "clientName": "WEB_REMIX",
+                      "clientVersion": "1.20250129.01.00",
+                      "osName": "X11",
+                      "osVersion": "",
+                      "originalUrl": "https://music.youtube.com/",
+                      "platform": "DESKTOP",
+                      "clientFormFactor": "UNKNOWN_FORM_FACTOR",
+                      "configInfo": {
+                        "appInstallData": "CMy_iL0GEObPsQUQr8LOHBDqw68FEJmYsQUQ48nOHBCBzc4cEIWnsQUQytixBRCI468FEMK3zhwQvLLOHBDE2LEFEI7QsQUQppOxBRD2q7AFEN-0zhwQvYqwBRCDw7EFEOeazhwQjNCxBRDBzbEFEIqhsQUQi9SxBRDerbEFEL22rgUQkrjOHBDJ5rAFEOfQzhwQgdaxBRCZ0v8SEI3UsQUQytSxBRCZjbEFEL2ZsAUQyNixBRDEu84cENCNsAUQxtixBRCEvc4cEJT-sAUQ_eX_EhDT4a8FEKKjzhwQms6xBRCBw7EFEIiwzhwQyfevBRCHrM4cEOW5sQUQjtTOHBCi1LEFELfq_hIQ0ZTOHBDr6P4SEIiHsAUQjtexBRDiuLAFEI_DsQUQwLfOHBDM364FEJLLsQUQ_LLOHBC14_8SEMHCzhwQ3rzOHBDtubEFEIfDsQUQ-rjOHBC3pM4cEJS7zhwQ3MjOHBCuwc4cEPirsQUQntCwBRDYvs4cEO66zhwqIENBTVNFaFVKb0wyd0ROSGtCdUhkaFFxal93UWRCdz09",
+                        "coldConfigData": "CMy_iL0GGjJBT2pGb3gwVU5ISFBtQ0U3bWVja2NoUEVkczFHTFZQeVh2M2VneXQzdFpsazJ6NWlhdyIyQU9qRm94MFVOSEhQbUNFN21lY2tjaFBFZHMxR0xWUHlYdjNlZ3l0M3RabGsyejVpYXc%3D",
+                        "coldHashData": "CMy_iL0GEhM4MzcyMjg4Nzg1MDY2MDg0NzkyGMy_iL0GMjJBT2pGb3gwVU5ISFBtQ0U3bWVja2NoUEVkczFHTFZQeVh2M2VneXQzdFpsazJ6NWlhdzoyQU9qRm94MFVOSEhQbUNFN21lY2tjaFBFZHMxR0xWUHlYdjNlZ3l0M3RabGsyejVpYXc%3D",
+                        "hotHashData": "CMy_iL0GEhQxNzM2OTIzMjY3NTA1ODYxMDMzMBjMv4i9BjIyQU9qRm94MFVOSEhQbUNFN21lY2tjaFBFZHMxR0xWUHlYdjNlZ3l0M3RabGsyejVpYXc6MkFPakZveDBVTkhIUG1DRTdtZWNrY2hQRWRzMUdMVlB5WHYzZWd5dDN0WmxrMno1aWF3"
+                      },
+                      "browserName": "Chrome",
+                      "browserVersion": "132.0.0.0",
+                      "acceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                      "deviceExperimentId": "ChxOelEyTnpVMk5qQTVOREkyT0RreE1qVXdPUT09EMy_iL0GGMy_iL0G",
+                      "rolloutToken": "CNas9fyc3vyTiAEQ_K3DjZmqiwMY_K3DjZmqiwM%3D",
+                      "screenWidthPoints": 638,
+                      "screenHeightPoints": 957,
+                      "screenPixelDensity": 1,
+                      "screenDensityFloat": 1,
+                      "utcOffsetMinutes": 330,
+                      "userInterfaceTheme": "USER_INTERFACE_THEME_DARK",
+                      "connectionType": "CONN_CELLULAR_4G",
+                      "timeZone": "Asia/Calcutta",
+                      "playerType": "UNIPLAYER",
+                      "tvAppInfo": { "livingRoomAppMode": "LIVING_ROOM_APP_MODE_UNSPECIFIED" },
+                      "clientScreen": "WATCH_FULL_SCREEN"
+                    },
+                    "user": { "lockedSafetyMode": false },
+                    "request": {
+                      "useSsl": true,
+                      "internalExperimentFlags": [],
+                      "consistencyTokenJars": []
+                    },
+                    "clientScreenNonce": "ef6W0cCndoMi40Ei",
+                    "adSignalsInfo": {
+                      "params": [
+                        { "key": "dt", "value": "1738678221625" },
+                        { "key": "flash", "value": "0" },
+                        { "key": "frm", "value": "0" },
+                        { "key": "u_tz", "value": "330" },
+                        { "key": "u_his", "value": "4" },
+                        { "key": "u_h", "value": "1080" },
+                        { "key": "u_w", "value": "1920" },
+                        { "key": "u_ah", "value": "1045" },
+                        { "key": "u_aw", "value": "1920" },
+                        { "key": "u_cd", "value": "24" },
+                        { "key": "bc", "value": "31" },
+                        { "key": "bih", "value": "957" },
+                        { "key": "biw", "value": "623" },
+                        { "key": "brdim", "value": "0,35,0,35,1920,35,1920,1045,638,957" },
+                        { "key": "vis", "value": "1" },
+                        { "key": "wgl", "value": "true" },
+                        { "key": "ca_type", "value": "image" }
+                      ]
+                    },
+                    "clickTracking": {
+                      "clickTrackingParams": "CIIDEMjeAiITCNTu4bGZqosDFRDlNAcd7-wRYw=="
+                    }
+                  },
+                  "playbackContext": {
+                    "contentPlaybackContext": {
+                      "html5Preference": "HTML5_PREF_WANTS",
+                      "lactMilliseconds": "17",
+                      "referer": "https://music.youtube.com/search?q=timeless+playboi+carti",
+                      "signatureTimestamp": 20118,
+                      "autoCaptionsDefaultOn": false,
+                      "mdxContext": {},
+                      "vis": 10
+                    }
+                  },
+                  "cpn": "e_trSOTIOFAmRZQC",
+                  "captionParams": {},
+                  "serviceIntegrityDimensions": {
+                    "poToken": "MnTqwowGzQcg7Or6qcSESAUMOV7rA3T2RfuYaeBa58OZMTJQG9BHUujQJXip1woHFciwSPfHx5E7tl5NnOUF0wPBKfd23ZpMwnhpwW8pLLDu5iUKyUkIoWXrgOxkQ_ZW6osHB348CaqH3Bc8obOtofcwiLLsZw=="
+                  }
                 }
-            ]
-        },
-        "clickTracking": {
-            "clickTrackingParams": "CIUDEMjeAiITCPPAkIPQ_YoDFUKGSwUdoyYXwA=="
-        }
-    },
-    "playbackContext": {
-        "contentPlaybackContext": {
-            "html5Preference": "HTML5_PREF_WANTS",
-            "lactMilliseconds": "13",
-            "referer": "https://music.youtube.com/",
-            "signatureTimestamp": 20102,
-            "autoCaptionsDefaultOn": false,
-            "mdxContext": {},
-            "vis": 10
-        }
-    },
-    "cpn": "CiSoNkKYfS4kVs9C",
-    "captionParams": {},
-    "serviceIntegrityDimensions": {
-        "poToken": "MnQdsdbQg7qCfR2JS2iMDUTlm8YSDtJ9eWjx6bC205rbNJSa20b1RRj2CowgmBXzdQf3pd22CBnRxOc2WiyXkpkx1nShvP-BzBzHPXczA8SXEe-RalpKJC1u_63z1f4Kpp9NVwMGUHEPGOgp6AbYp0s5labdeA=="
-    }
-}
-    """.trimIndent()
+
+            """.trimIndent()
 
 //        contentType(ContentType.Application.Json)
             url {
@@ -186,25 +133,26 @@ class InnertubeClient(private val ktorclient: KtorClient) {
                 append("sec-ch-arch", "x86")
                 append("sec-ch-bitness", "64")
                 append("sec-ch-ua-form-factors", "Desktop")
-                append("sec-ch-ua-full-version", "132.0.6834.84")
+                append("sec-ch-ua-full-version", "132.0.6834.159")
                 append(
                     "sec-ch-ua-full-version-list",
-                    """"Not A(Brand";v="8.0.0.0", "Chromium";v="132.0.6834.84", "Google Chrome";v="132.0.6834.84""""
+                    """"Not A(Brand";v="8.0.0.0", "Chromium";v="132.0.6834.159", "Google Chrome";v="132.0.6834.159""""
                 )
                 append("sec-ch-ua-mobile", "?0")
                 append("sec-ch-ua-model", "\"\"")
-                append("sec-ch-ua-platform", "Windows")
-                append("sec-ch-ua-platform-version", "\"19.0.0\"")
+                append("sec-ch-ua-platform", "\"Linux\"")
+                append("sec-ch-ua-platform-version", "\"6.8.0\"")
                 append("sec-fetch-dest", "empty")
                 append("sec-fetch-mode", "cors")
                 append("sec-fetch-site", "same-origin")
                 append(
                     HttpHeaders.UserAgent,
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+                    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
                 )
-                append("x-goog-visitor-id", "Cgt2akxrRE1wcTllNCiJg6u8BjIKCgJJThIEGgAgQg%3D%3D")
+                append("x-goog-visitor-id", "CgtmWWFldUV5NDZ4USjMv4i9BjIKCgJJThIEGgAgVg%3D%3D")
                 append("x-youtube-bootstrap-logged-in", "false")
-                append("x-youtube-client-version", "1.20250113.00.00")
+                append("x-youtube-client-name", "67")
+                append("x-youtube-client-version", "1.20250129.01.00")
             }
             setBody(bodyJson)
         }
@@ -214,7 +162,7 @@ class InnertubeClient(private val ktorclient: KtorClient) {
 
     suspend fun getBaseJs(): String {
         val response =
-            ktorclient.client.get("https://music.youtube.com/s/player/f3d47b5a/player_ias.vflset/en_US/base.js")
+            ktorclient.client.get("https://music.youtube.com/s/player/0f7c1eff/player_ias.vflset/en_US/base.js")
         val baseJs = response.bodyAsText()
         return baseJs
     }
