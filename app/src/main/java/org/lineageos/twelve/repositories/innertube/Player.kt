@@ -25,14 +25,14 @@ class Player(private val innertubeClient: InnertubeClient) {
             Log.d("error2", "Failed to extract signature decipher algorithm.")
             return ""
         }
-        return "function descramble_sig($varName) { let $objName={$functions}; ${match.groups[2]?.value} } descramble_sig(sig);"
+        return "function descramble_sig($varName) { let $objName={$functions}; ${match.groups[2]?.value} };"
     }
 
     fun getNsigSource(baseJs: String): String {
         val regexOpts = setOf(RegexOption.DOT_MATCHES_ALL, RegexOption.MULTILINE)
         var variable = ""
         val regex =
-            "[a-zA-z0-9]+=function\\(\\S\\)\\{var \\S=\\S\\.split.*-_w8_\\\"\\+[a-zA-Z]\\}return \\S\\.join\\(\\\"\\\"\\)\\};"
+            "([a-zA-z0-9]+)=function\\(\\S\\)\\{var \\S=\\S\\.split.*-_w8_\\\"\\+[a-zA-Z]\\}return \\S\\.join\\(\\\"\\\"\\)\\};"
         val nsig = Regex(regex, regexOpts)
         val result = nsig.find(baseJs)
         if (result != null) {
@@ -55,7 +55,7 @@ class Player(private val innertubeClient: InnertubeClient) {
 
                 Log.d("variableMatch", variableMatch.groupValues[0])
 
-                return variableMatch.groupValues[0] + result.groupValues[0]
+                return variableMatch.groupValues[0] + "var "+ result.groupValues[0] + "${result.groupValues[1]}(nsig);"
             }
         }
         return "hello"
