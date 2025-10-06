@@ -5,13 +5,13 @@
 -->
 <resources>
     <!-- Application theme -->
-    <style name="Theme.Twelve" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Twelve" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="android:enforceNavigationBarContrast">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="enableEdgeToEdge">true</item>
     </style>
 
-    <style name="Theme.Twelve.Dialog" parent="Theme.Material3.DayNight.Dialog.Alert">
+    <style name="Theme.Twelve.Dialog" parent="Theme.Material3Expressive.Light.Dialog.Alert">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
@@ -112,7 +112,13 @@
     </style>
 
     <!-- App widget -->
-    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3Expressive.DynamicColors.DayNight">
         <item name="appWidgetRadius">28dp</item>
+    </style>
+
+<!--    Rounded corner -->
+    <style name="ShapeAppearance.App.Corner.ExtraSmall.Rounded" parent="ShapeAppearance.Material3.Corner.ExtraSmall">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">100dp</item>
     </style>
 </resources>

@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.lineageos.generatebp.GenerateBpPluginExtension
 import org.lineageos.generatebp.models.Module
 
@@ -53,8 +54,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
+//    kotlinOptions {
+//        jvmTarget = "17"
+//    }
+}
+
+kotlin{
+    compilerOptions{
+        jvmTarget = JvmTarget.fromTarget("17")
     }
 }
 
